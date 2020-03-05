@@ -38,5 +38,8 @@ public class Main {
             System.out.println(Arrays.toString(b));
         }
 	// write your code here
+
+        Bits bits = new Bits('a');
+        System.out.println(bits);
     }
 }
