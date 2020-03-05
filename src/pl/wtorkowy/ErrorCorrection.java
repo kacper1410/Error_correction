@@ -1,5 +1,7 @@
 package pl.wtorkowy;
 
+import java.util.Arrays;
+
 public class ErrorCorrection {
     private byte[][] H = {
             { 1,1,1,0,0,0,1,1,1,0,0,0 },
@@ -48,6 +50,14 @@ public class ErrorCorrection {
             bits.changeBit(positon - 1);
         }
         return bits;
+    }
+
+    public Bits code (Bits bits) {
+        return Matrix.multiply(bits, G);
+    }
+
+    public Bits decode (Bits bits) {
+        return new Bits(Arrays.copyOfRange(bits.getBits(), 0, 8));
     }
 }
 
