@@ -52,4 +52,9 @@ public class Bits {
                 "bits=" + Arrays.toString(bits) +
                 '}';
     }
+
+    public void changeBit (int position) {
+        bits[position] ^= 1;
+    }
+
 }

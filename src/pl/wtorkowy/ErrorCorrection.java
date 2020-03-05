@@ -26,5 +26,28 @@ public class ErrorCorrection {
     public Bits checkParityBits(Bits bits) {
         return new Bits(Matrix.multiply(this.H, Matrix.transpose(bits.getBits())));
     }
+
+    public int checkErrorPosition (Bits columnB) {
+        byte[] column = columnB.getBits();
+        for (int i = 0; i < H[0].length; i++) {
+            for (int j = 0; j < column.length; j++) {
+                if (column[j] != H[j][i]) {
+                    break;
+                }
+                if (j == column.length - 1) {
+                    return i + 1;
+                }
+            }
+        }
+        return 0;
+    }
+
+    public Bits correctError (Bits bits) {
+        int positon = checkErrorPosition(checkParityBits(bits));
+        if (positon != 0) {
+            bits.changeBit(positon - 1);
+        }
+        return bits;
+    }
 }
 
