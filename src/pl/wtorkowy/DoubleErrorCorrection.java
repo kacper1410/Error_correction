@@ -71,6 +71,7 @@ public class DoubleErrorCorrection {
     }
 
     public Bits decode(Bits bits) {
+        bits = correctError(bits);
         return new Bits(Arrays.copyOfRange(bits.getBits(), 0, 8));
     }
 }
