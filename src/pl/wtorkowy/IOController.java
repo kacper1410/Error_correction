@@ -2,8 +2,6 @@ package pl.wtorkowy;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
 
 public class IOController {
     private FileInputStream fileInputStream;
@@ -45,6 +43,34 @@ public class IOController {
         }
 
         return bits;
+    }
+
+    public ArrayList<Bits> read() throws IOException {
+        ArrayList<Bits> bits = new ArrayList<>();
+
+        for (int i = 0; i < length; i++) {
+            bits.add(new Bits((char) fileInputStream.read()));
+        }
+
+        return bits;
+    }
+
+    public void write(ArrayList<Bits> bits) throws IOException {
+        int result = 0;
+        int tmp = 1;
+        
+        for (Bits b: bits) {
+            result = 0;
+            tmp = 1;
+            byte[] tab = b.getBits();
+
+            for (int i = tab.length - 1; i >= 0; i--) {
+                result += tab[i] * tmp;
+                tmp *= 2;
+            }
+            fileWriter.write(result);
+        }
+
     }
 
     public void close() throws IOException {
