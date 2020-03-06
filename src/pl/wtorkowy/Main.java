@@ -8,31 +8,36 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-//        ErrorCorrection errorCorrection = new ErrorCorrection();
-//        Bits bits = new Bits(new byte[] { 0,1,1,0,0,0,0,1,1,0,0,0});
+        DoubleErrorCorrection errorCorrection = new DoubleErrorCorrection();
+        Bits bits = new Bits(new byte[] { 0,1,1,0,1,0,0,1});
+        System.out.println(bits);
+        bits = errorCorrection.code(bits);
 //        Bits bits2 = new Bits(new byte[] { 0,1,1,0,0,0,0,1});
-//        System.out.println(bits);
+        System.out.println(bits);
+        bits.changeBit(0);
+        bits.changeBit(15);
+        System.out.println(bits);
 //        bits2 = errorCorrection.code(bits2);
 //        System.out.println(bits2);
-//        Bits column = errorCorrection.checkParityBits(bits);
-//        System.out.println(column);
-//        System.out.println(errorCorrection.checkErrorPosition(column));
-//        errorCorrection.correctError(bits);
-//        System.out.println(bits);
-//        System.out.println(errorCorrection.decode(bits));
+        Bits column = errorCorrection.checkParityBits(bits);
+        System.out.println(column);
+        System.out.println(Arrays.toString(errorCorrection.checkErrorPosition(column)));
+        errorCorrection.correctError(bits);
+        System.out.println(bits);
+        System.out.println(errorCorrection.decode(bits));
 
-        IOController ioController = new IOController("/Users/user/Desktop/input","/Users/user/Desktop/output");
-        ArrayList<Bits> bits = ioController.readBits(8);
-
-
-
-        System.out.println(bits.size());
-
-        for (Bits s: bits) {
-            System.out.println(s);
-        }
-
-        ioController.writeBits(bits);
-        ioController.close();
+//        IOController ioController = new IOController("/Users/user/Desktop/input","/Users/user/Desktop/output");
+//        ArrayList<Bits> bits = ioController.readBits(8);
+//
+//
+//
+//        System.out.println(bits.size());
+//
+//        for (Bits s: bits) {
+//            System.out.println(s);
+//        }
+//
+//        ioController.writeBits(bits);
+//        ioController.close();
     }
 }

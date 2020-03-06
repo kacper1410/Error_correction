@@ -39,5 +39,13 @@ public class Matrix {
         return result;
     }
 
+    public static byte[] sumColumns (byte[][] matrix, int first, int second) {
+        byte[] result = new byte[matrix.length];
+        for (int i = 0; i < matrix.length; i++) {
+            result[i] =(byte)(matrix[i][first] ^ matrix[i][second]);
+        }
+        return result;
+    }
+
 
 }
