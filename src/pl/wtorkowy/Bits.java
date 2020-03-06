@@ -14,7 +14,7 @@ public class Bits {
     }
 
     public Bits(byte[] bits) {
-        this.bits = bits;
+        this.bits = Arrays.copyOf(bits, bits.length);
     }
 
     public Bits(byte[][] bits) {
