@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class IOController {
     private FileInputStream fileInputStream;
-    private FileWriter fileWriter;
+    private FileOutputStream fileOutputStream;
 
     private long length;
 
@@ -13,16 +13,16 @@ public class IOController {
         File file = new File(input);
         length = file.length();
         fileInputStream = new FileInputStream(file);
-        fileWriter = new FileWriter(new File(output));
+        fileOutputStream = new FileOutputStream(new File(output));
     }
 
     public void writeBits(ArrayList<Bits> bits) throws IOException {
         for (Bits b: bits) {
             for (byte by: b.getBits()) {
                 if(by == 1)
-                    fileWriter.write('1');
+                    fileOutputStream.write('1');
                 else
-                    fileWriter.write('0');
+                    fileOutputStream.write('0');
             }
         }
     }
@@ -68,13 +68,13 @@ public class IOController {
                 result += tab[i] * tmp;
                 tmp *= 2;
             }
-            fileWriter.write(result);
+            fileOutputStream.write(result);
         }
 
     }
 
     public void close() throws IOException {
-        fileWriter.close();
+        fileOutputStream.close();
         fileInputStream.close();
     }
 }
